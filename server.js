@@ -2,24 +2,23 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 const { MongoClient } = require("mongodb");
-require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 const PORT = 5000;
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const MONGODB_URI = process.env.MONGODB_URI; // MongoDB URI
+const OPENAI_API_KEY = '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';  // OpenAI API key
+const MONGODB_URI = 'mongodb+srv://abdusattorovasilbek278:o5no2OD1MNTX9dxA@cluster0.scuct.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';  // MongoDB URI
 
 // Проверка наличия API ключа
 if (!OPENAI_API_KEY) {
-    console.error("❌ OPENAI_API_KEY не найден! Проверьте файл .env.");
+    console.error("❌ OPENAI_API_KEY не найден!");
     process.exit(1);
 }
 
 if (!MONGODB_URI) {
-    console.error("❌ MONGODB_URI не найден! Проверьте файл .env.");
+    console.error("❌ MONGODB_URI не найден!");
     process.exit(1);
 }
 
