@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Генератор Контента - Панель Администратора</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AI Генератор Контента</h1>
+    </header>
+    
+    <main>
+        <section id="admin-panel">
+            <h2>Панель Администратора</h2>
+            <label for="question">Введите вопрос:</label>
+            <input type="text" id="question" placeholder="Например: Что такое искусственный интеллект?" required>
+            
+            <label for="timer">Таймер (в секундах):</label>
+            <input type="number" id="timer" min="10" value="30" required>
+            
+            <button id="generate">Сгенерировать</button>
+            <button id="view-history">Посмотреть историю</button>
+        </section>
+        
+        <section id="result">
+            <h2>Результаты</h2>
+            <div id="generated-content"></div>
+        </section>
+        
+        <section id="history" style="display: none;">
+            <h2>История Генерации</h2>
+            <ul id="history-list"></ul>
+        </section>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
