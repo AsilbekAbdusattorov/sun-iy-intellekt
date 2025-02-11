@@ -1,5 +1,3 @@
-require('dotenv').config(); // .env faylini yuklash
-
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
@@ -10,22 +8,20 @@ app.use(cors());
 
 // Config qiymatlari
 const PORT = 5000;
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY; // OpenAI API kaliti
+const OPENAI_API_KEY = "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"; // API kaliti bevosita kodda
 
 // AI yordamida matn yaratish
 app.post("/generate", async (req, res) => {
     const { name, question } = req.body;
 
-    // Ism va savol mavjudligini tekshirish
     if (!name || !question) {
         return res.status(400).json({ error: "Имя и вопрос обязательны!" });
     }
 
     try {
-        // OpenAI API'ga so'rov yuborish
         const response = await axios.post("https://api.openai.com/v1/chat/completions", {
-            model: "gpt-3.5-turbo", // Modelni tanlash
-            messages: [{ role: "user", content: question }], // Foydalanuvchi so'rovini yuborish
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: question }],
             max_tokens: 500
         }, {
             headers: {
@@ -35,8 +31,6 @@ app.post("/generate", async (req, res) => {
         });
 
         const generatedText = response.data.choices[0].message.content.trim();
-
-        // Javobni qaytarish
         res.json({ text: generatedText });
     } catch (error) {
         console.error("Ошибка при подключении к AI:", error.response?.data || error.message);
