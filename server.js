@@ -1,3 +1,5 @@
+require("dotenv").config(); // .env faylni yuklash
+
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
@@ -7,8 +9,8 @@ app.use(express.json());
 app.use(cors());
 
 // Config qiymatlari
-const PORT = 5000;
-const OPENAI_API_KEY = "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"; // API kaliti bevosita kodda
+const PORT = process.env.PORT || 5000;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY; // API kalitni .env fayldan olish
 
 // AI yordamida matn yaratish
 app.post("/generate", async (req, res) => {
