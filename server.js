@@ -6,7 +6,18 @@ const axios = require("axios");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+// CORS ruxsatini kerakli domenlarga berish (ishlab chiqishda, undan keyin butun dunyoga ruxsat berish mumkin)
+const allowedOrigins = ["https://your-allowed-domain.com"]; // Kerakli domenni qo'shing
+app.use(cors({
+    origin: function(origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    }
+}));
 
 // Config qiymatlari
 const PORT = process.env.PORT || 5000;
